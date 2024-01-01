@@ -1,2 +1,6 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿using AdventOfCode2023;
+
+var solver = new Solver();
+solver.PrintDay(1);
+// solver.PrintAllAnswers();
+
