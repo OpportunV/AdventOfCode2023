@@ -9,9 +9,9 @@ public class CubeGame
 
     public bool Possible { get; private set; }
     
-    public CubeSet MinimumCubeSet => new(_rounds.MaxBy(set => set.Red)!.Red,
-                                         _rounds.MaxBy(set => set.Green)!.Green,
-                                         _rounds.MaxBy(set => set.Blue)!.Blue);
+    public CubeSet MinimumCubeSet => new(_rounds.Max(set => set.Red),
+                                         _rounds.Max(set => set.Green),
+                                         _rounds.Max(set => set.Blue));
 
     private readonly List<CubeSet> _rounds = new();
     private readonly Regex _regexRed = new(@"(\d+) red", RegexOptions.IgnoreCase);
