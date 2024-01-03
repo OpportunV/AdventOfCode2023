@@ -9,13 +9,14 @@
 
     <ItemGroup>
         <None Update="Input\*">
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Extensions\Extensions.csproj" />
+      <ProjectReference Include="..\Helpers\Helpers.csproj" />
     </ItemGroup>
+
 
 
 

@@ -2,7 +2,7 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdventOfCode2023", "AdventOfCode2023\AdventOfCode2023.csproj", "{C8C41C4D-4C9B-4FDD-8917-272C3989B1AB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Extensions", "Extensions\Extensions.csproj", "{31A669EF-5CF1-416A-9750-D8220B898659}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Helpers", "Helpers\Helpers.csproj", "{31A669EF-5CF1-416A-9750-D8220B898659}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

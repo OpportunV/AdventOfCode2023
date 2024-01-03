@@ -1,4 +1,4 @@
-﻿namespace Extensions;
+﻿namespace Helpers.Extensions;
 
 public static class EnumerableExtensions
 {
