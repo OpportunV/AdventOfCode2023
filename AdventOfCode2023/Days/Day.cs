@@ -12,4 +12,9 @@ public abstract class Day
     {
         return File.ReadAllLines(InputPath);
     }
+    
+    protected string GetInputRaw()
+    {
+        return File.ReadAllText(InputPath);
+    }
 }
