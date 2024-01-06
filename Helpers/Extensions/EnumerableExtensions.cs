@@ -1,4 +1,7 @@
-﻿namespace Helpers.Extensions;
+﻿using System.Numerics;
+
+
+namespace Helpers.Extensions;
 
 public static class EnumerableExtensions
 {
@@ -23,5 +26,10 @@ public static class EnumerableExtensions
         }
 
         return list;
+    }
+
+    public static TSource Product<TSource>(this IEnumerable<TSource> source) where TSource : INumber<TSource>
+    {
+        return source.Aggregate(TSource.MultiplicativeIdentity, (accumulate, number) => accumulate * number);
     }
 }
