@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdventOfCode2023", "AdventO
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Helpers", "Helpers\Helpers.csproj", "{31A669EF-5CF1-416A-9750-D8220B898659}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common\Common.csproj", "{4F92CE34-C6B1-4145-8808-7CCD3F0EAD96}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{31A669EF-5CF1-416A-9750-D8220B898659}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{31A669EF-5CF1-416A-9750-D8220B898659}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{31A669EF-5CF1-416A-9750-D8220B898659}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4F92CE34-C6B1-4145-8808-7CCD3F0EAD96}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F92CE34-C6B1-4145-8808-7CCD3F0EAD96}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F92CE34-C6B1-4145-8808-7CCD3F0EAD96}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F92CE34-C6B1-4145-8808-7CCD3F0EAD96}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
