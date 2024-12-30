@@ -1,18 +1,20 @@
-﻿using System.Text.RegularExpressions;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text.RegularExpressions;
 using Helpers.Table;
-
 
 namespace AdventOfCode2023.Models.Day3;
 
 public class EngineSchematics
 {
     public IEnumerable<int> PartNumbers => _engineNumbers
-                                           .Where(number => number.IsPartNumber)
-                                           .Select(number => number.Value);
+        .Where(number => number.IsPartNumber)
+        .Select(number => number.Value);
 
     public IEnumerable<int> GearValues => _engineGears
-                                          .Values.Where(engineNumbers => engineNumbers.Count == 2)
-                                          .Select(engineNumbers => engineNumbers[0].Value * engineNumbers[1].Value);
+        .Values.Where(engineNumbers => engineNumbers.Count == 2)
+        .Select(engineNumbers => engineNumbers[0].Value * engineNumbers[1].Value);
 
     private readonly string[] _schematics;
     private readonly List<EngineNumber> _engineNumbers = new();
@@ -49,9 +51,9 @@ public class EngineSchematics
         foreach (var engineNumber in _engineNumbers)
         {
             engineNumber.IsPartNumber = !(TopRowEmpty(engineNumber)
-                                          && BottomRowEmpty(engineNumber)
-                                          && LeftEmpty(engineNumber)
-                                          && RightEmpty(engineNumber));
+                && BottomRowEmpty(engineNumber)
+                && LeftEmpty(engineNumber)
+                && RightEmpty(engineNumber));
         }
     }
 

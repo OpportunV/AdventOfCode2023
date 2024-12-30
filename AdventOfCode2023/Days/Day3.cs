@@ -1,5 +1,5 @@
-﻿using AdventOfCode2023.Models.Day3;
-
+﻿using System.Linq;
+using AdventOfCode2023.Models.Day3;
 
 namespace AdventOfCode2023.Days;
 

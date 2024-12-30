@@ -1,9 +1,8 @@
 ﻿using System.Numerics;
 
-
 namespace Helpers.Data;
 
-public readonly struct Range<T> where T : INumber<T>
+public record Range<T> where T : INumber<T>
 {
     public T Start { get; }
 

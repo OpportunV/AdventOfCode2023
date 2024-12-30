@@ -1,5 +1,7 @@
-﻿using System.Text.RegularExpressions;
-
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace AdventOfCode2023.Models.Day4;
 
@@ -11,7 +13,7 @@ public class Card
 
     public int Id { get; init; }
 
-    public int Points { get; init; }
+    public int Points { get; }
 
     public Card(string cardData)
     {
@@ -24,6 +26,6 @@ public class Card
             new HashSet<int>(Regex.Matches(allNumbers[0], @"\d+").Select(match => int.Parse(match.Value)));
         var numbers = new HashSet<int>(Regex.Matches(allNumbers[1], @"\d+").Select(match => int.Parse(match.Value)));
         WinningNumbers = numbers.Intersect(winingNumbers).ToHashSet();
-        Points = (int) Math.Pow(2, WinningNumbers.Count - 1);
+        Points = (int)Math.Pow(2, WinningNumbers.Count - 1);
     }
 }

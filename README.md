@@ -1,5 +1,5 @@
 # AdventOfCode2023
-Using .net 8 and c# 12.
+Using .net 9 and c# 13.
 
 All the inputs must be in the dedicated folder 'Input'
 with the names corresponding the pattern Day{i}.txt

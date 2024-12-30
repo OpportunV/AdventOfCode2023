@@ -1,5 +1,6 @@
-﻿using System.Text.RegularExpressions;
-
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace AdventOfCode2023.Models.Day2;
 
@@ -8,10 +9,10 @@ public class CubeGame
     public int Id { get; private set; }
 
     public bool Possible { get; private set; }
-    
+
     public CubeSet MinimumCubeSet => new(_rounds.Max(set => set.Red),
-                                         _rounds.Max(set => set.Green),
-                                         _rounds.Max(set => set.Blue));
+        _rounds.Max(set => set.Green),
+        _rounds.Max(set => set.Blue));
 
     private readonly List<CubeSet> _rounds = new();
     private readonly Regex _regexRed = new(@"(\d+) red", RegexOptions.IgnoreCase);
@@ -41,7 +42,7 @@ public class CubeGame
         foreach (var round in rounds)
         {
             _rounds.Add(new CubeSet(GetCubesByRegex(_regexRed, round), GetCubesByRegex(_regexGreen, round),
-                                    GetCubesByRegex(_regexBlue, round)));
+                GetCubesByRegex(_regexBlue, round)));
         }
     }
 

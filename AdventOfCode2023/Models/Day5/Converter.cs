@@ -1,5 +1,5 @@
-﻿using Helpers.Data;
-
+﻿using System.Collections.Generic;
+using Helpers.Data;
 
 namespace AdventOfCode2023.Models.Day5;
 
@@ -22,7 +22,7 @@ public class Converter
     {
         return number >= _sourceRange.Start && number <= _sourceRange.End;
     }
-    
+
     public long Convert(long number)
     {
         return _destinationRange.Start + number - _sourceRange.Start;

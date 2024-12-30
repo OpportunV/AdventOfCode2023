@@ -1,4 +1,6 @@
-﻿namespace AdventOfCode2023.Days;
+﻿using System.IO;
+
+namespace AdventOfCode2023.Days;
 
 public abstract class Day
 {
@@ -12,7 +14,7 @@ public abstract class Day
     {
         return File.ReadAllLines(InputPath);
     }
-    
+
     protected string GetInputRaw()
     {
         return File.ReadAllText(InputPath);

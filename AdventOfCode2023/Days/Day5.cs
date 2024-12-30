@@ -1,7 +1,9 @@
-﻿using System.Text.RegularExpressions;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text.RegularExpressions;
 using AdventOfCode2023.Models.Day5;
 using Helpers.Data;
-
 
 namespace AdventOfCode2023.Days;
 
@@ -22,11 +24,11 @@ public class Day5 : Day
         foreach (var converters in _converters.Values)
         {
             valuesToConvert = valuesToConvert.Select(valueToConvert =>
-                                                         converters.FirstOrDefault(
-                                                                 converter =>
-                                                                     converter.IsApplicableToNumber(valueToConvert))
-                                                             ?.Convert(valueToConvert)
-                                                         ?? valueToConvert).ToList();
+                converters.FirstOrDefault(
+                        converter =>
+                            converter.IsApplicableToNumber(valueToConvert))
+                    ?.Convert(valueToConvert)
+                ?? valueToConvert).ToList();
         }
 
         return valuesToConvert.Min().ToString();
@@ -85,11 +87,11 @@ public class Day5 : Day
         var converters = entries[1..]
             .Select((data, i) => (data: data.Split(new[] { "\r\n", "\n", "\r" }, SplitOptions)[1..], index: i))
             .ToDictionary(pair => pair.index,
-                          pair => pair.data.Select(converterText =>
-                                                       new Converter(
-                                                           regex.Matches(converterText)
-                                                               .Select(item => long.Parse(item.Value)).ToArray()))
-                              .ToList());
+                pair => pair.data.Select(converterText =>
+                        new Converter(
+                            regex.Matches(converterText)
+                                .Select(item => long.Parse(item.Value)).ToArray()))
+                    .ToList());
 
         return converters;
     }

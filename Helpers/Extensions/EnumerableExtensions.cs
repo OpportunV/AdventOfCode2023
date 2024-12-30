@@ -1,12 +1,11 @@
 ﻿using System.Numerics;
 
-
 namespace Helpers.Extensions;
 
 public static class EnumerableExtensions
 {
     public static TSource? MinByOrDefault<TSource, TKey>(this IEnumerable<TSource> source,
-                                                         Func<TSource, TKey> keySelector)
+        Func<TSource, TKey> keySelector)
     {
         var list = source.ToList();
         return list.Any()

@@ -1,5 +1,7 @@
-﻿using AdventOfCode2023.Days;
-
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using AdventOfCode2023.Days;
 
 namespace AdventOfCode2023;
 
@@ -34,13 +36,13 @@ public class Solver
     {
         var baseClassType = typeof(Day);
         var enumerable = AppDomain.CurrentDomain.GetAssemblies()
-                                  .SelectMany(assembly => assembly.GetTypes())
-                                  .Where(type => type is
-                                                 {
-                                                     IsClass: true,
-                                                     IsAbstract: false
-                                                 }
-                                                 && baseClassType.IsAssignableFrom(type));
+            .SelectMany(assembly => assembly.GetTypes())
+            .Where(type => type is
+                {
+                    IsClass: true,
+                    IsAbstract: false
+                }
+                && baseClassType.IsAssignableFrom(type));
         return enumerable;
     }
 

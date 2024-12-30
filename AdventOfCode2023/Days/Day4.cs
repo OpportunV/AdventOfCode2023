@@ -1,5 +1,6 @@
-﻿using AdventOfCode2023.Models.Day4;
-
+﻿using System.Collections.Generic;
+using System.Linq;
+using AdventOfCode2023.Models.Day4;
 
 namespace AdventOfCode2023.Days;
 
@@ -11,7 +12,7 @@ public class Day4 : Day
     {
         _cards = GetInput().Select(inp => new Card(inp));
     }
-    
+
     public override string Part1()
     {
         return _cards.Sum(card => card.Points).ToString();

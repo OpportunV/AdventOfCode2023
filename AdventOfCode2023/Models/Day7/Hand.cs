@@ -1,4 +1,8 @@
-﻿namespace AdventOfCode2023.Models.Day7;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace AdventOfCode2023.Models.Day7;
 
 public class Hand
 {
@@ -17,7 +21,7 @@ public class Hand
         CombinationType = GetCardsType();
         AdvancedCombinationType = GetCardsAdvancedType();
     }
-    
+
     private CombinationType GetCardsType()
     {
         var noDuplicates = new HashSet<char>(Cards);
