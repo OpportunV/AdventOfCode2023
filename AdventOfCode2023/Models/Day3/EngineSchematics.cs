@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
-using Helpers.Table;
+using Common.Models;
 
 namespace AdventOfCode2023.Models.Day3;
 
@@ -17,11 +17,11 @@ public class EngineSchematics
         .Select(engineNumbers => engineNumbers[0].Value * engineNumbers[1].Value);
 
     private readonly string[] _schematics;
-    private readonly List<EngineNumber> _engineNumbers = new();
+    private readonly List<EngineNumber> _engineNumbers = [];
     private readonly Regex _regexNum = new(@"\d+", RegexOptions.IgnoreCase);
     private readonly int _schematicsWidth;
     private readonly int _schematicsHeight;
-    private readonly Dictionary<Position2d, List<EngineNumber>> _engineGears = new();
+    private readonly Dictionary<GridPos2d, List<EngineNumber>> _engineGears = new();
 
     public EngineSchematics(string[] schematics)
     {
@@ -140,14 +140,14 @@ public class EngineSchematics
             return;
         }
 
-        var gearPos = new Position2d(col, row);
+        var gearPos = new GridPos2d(row, col);
         if (_engineGears.TryGetValue(gearPos, out var engineGear))
         {
             engineGear.Add(engineNumber);
         }
         else
         {
-            _engineGears[gearPos] = new List<EngineNumber> { engineNumber };
+            _engineGears[gearPos] = [engineNumber];
         }
     }
 }

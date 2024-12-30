@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using AdventOfCode2023.Days;
 
@@ -7,7 +8,9 @@ namespace AdventOfCode2023;
 
 public class Solver
 {
-    public void PrintAllAnswers()
+    private static readonly Stopwatch _stopwatch = new();
+
+    public void PrintDays()
     {
         var classes = GetClasses();
 
@@ -19,6 +22,7 @@ public class Solver
             }
 
             PrintParts(instance);
+            Console.WriteLine("\n");
         }
     }
 
@@ -49,7 +53,11 @@ public class Solver
     private static void PrintParts(Day day)
     {
         Console.WriteLine(day.GetType().Name);
-        Console.WriteLine($"Part 1 {day.Part1()}");
-        Console.WriteLine($"Part 2 {day.Part2()}");
+        _stopwatch.Restart();
+        Console.WriteLine($"Part 1:\t {day.Part1()}");
+        Console.WriteLine($"Took {_stopwatch.Elapsed.TotalMilliseconds}ms\n");
+        _stopwatch.Restart();
+        Console.WriteLine($"Part 2:\t {day.Part2()}");
+        Console.WriteLine($"Took {_stopwatch.Elapsed.TotalMilliseconds}ms");
     }
 }

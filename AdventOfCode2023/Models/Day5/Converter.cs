@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Helpers.Data;
+using Common.Models;
 
 namespace AdventOfCode2023.Models.Day5;
 

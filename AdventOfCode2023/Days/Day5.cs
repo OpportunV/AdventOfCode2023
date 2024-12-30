@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using AdventOfCode2023.Models.Day5;
-using Helpers.Data;
+using Common.Models;
 
 namespace AdventOfCode2023.Days;
 
 public class Day5 : Day
 {
-    private IEnumerable<long> _seeds = Enumerable.Empty<long>();
+    private IEnumerable<long> _seeds = [];
     private readonly Dictionary<int, List<Converter>> _converters;
 
     public Day5()
@@ -80,7 +80,7 @@ public class Day5 : Day
     {
         var regex = new Regex(@"\d+");
         const StringSplitOptions SplitOptions = StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries;
-        var entries = input.Split(new[] { "\r\n\r\n", "\n\n", "\r\r" }, SplitOptions);
+        var entries = input.Split(["\r\n\r\n", "\n\n", "\r\r"], SplitOptions);
 
         _seeds = regex.Matches(entries[0]).Select(match => long.Parse(match.Value));
 

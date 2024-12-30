@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Text.RegularExpressions;
 using AdventOfCode2023.Models.Day6;
-using Helpers.Extensions;
+using Common.Extensions;
 
 namespace AdventOfCode2023.Days;
 
