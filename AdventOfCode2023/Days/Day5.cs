@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.RegularExpressions;
 using AdventOfCode2023.Models.Day5;
+using Common.Extensions;
 using Common.Models;
 
 namespace AdventOfCode2023.Days;
@@ -78,19 +78,16 @@ public class Day5 : Day
 
     private Dictionary<int, List<Converter>> ParseConverters(string input)
     {
-        var regex = new Regex(@"\d+");
         const StringSplitOptions SplitOptions = StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries;
         var entries = input.Split(["\r\n\r\n", "\n\n", "\r\r"], SplitOptions);
 
-        _seeds = regex.Matches(entries[0]).Select(match => long.Parse(match.Value));
+        _seeds = entries[0].GetNumbers<long>();
 
         var converters = entries[1..]
-            .Select((data, i) => (data: data.Split(new[] { "\r\n", "\n", "\r" }, SplitOptions)[1..], index: i))
+            .Select((data, i) => (data: data.Split(["\r\n", "\n", "\r"], SplitOptions)[1..], index: i))
             .ToDictionary(pair => pair.index,
                 pair => pair.data.Select(converterText =>
-                        new Converter(
-                            regex.Matches(converterText)
-                                .Select(item => long.Parse(item.Value)).ToArray()))
+                        new Converter(converterText.GetNumbers<long>()))
                     .ToList());
 
         return converters;

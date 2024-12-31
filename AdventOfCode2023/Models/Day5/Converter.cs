@@ -8,7 +8,7 @@ public class Converter
     private readonly Range<long> _sourceRange;
     private readonly Range<long> _destinationRange;
 
-    public Converter(params long[] values) : this(values[0], values[1], values[2])
+    public Converter(params IList<long> values) : this(values[0], values[1], values[2])
     {
     }
 
@@ -30,7 +30,7 @@ public class Converter
 
     public bool TryConvertRange(Range<long> range, out Range<long> result, out List<Range<long>> extras)
     {
-        extras = new List<Range<long>>();
+        extras = [];
         var overlap = range.Intersection(_sourceRange);
         if (!overlap.Ascending)
         {

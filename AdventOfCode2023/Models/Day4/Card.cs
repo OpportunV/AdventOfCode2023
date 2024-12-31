@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.RegularExpressions;
+using Common.Extensions;
 
 namespace AdventOfCode2023.Models.Day4;
 
@@ -11,20 +11,15 @@ public class Card
 
     public int Copies { get; set; } = 1;
 
-    public int Id { get; init; }
-
     public int Points { get; }
 
     public Card(string cardData)
     {
         var cardDataSplit = cardData.Split(": ");
-        Id = int.Parse(cardDataSplit[0].Split(" ")[^1]);
-
         var allNumbers = cardDataSplit[1].Split("|");
 
-        var winingNumbers =
-            new HashSet<int>(Regex.Matches(allNumbers[0], @"\d+").Select(match => int.Parse(match.Value)));
-        var numbers = new HashSet<int>(Regex.Matches(allNumbers[1], @"\d+").Select(match => int.Parse(match.Value)));
+        var winingNumbers = new HashSet<int>(allNumbers[0].GetNumbers<int>());
+        var numbers = new HashSet<int>(allNumbers[1].GetNumbers<int>());
         WinningNumbers = numbers.Intersect(winingNumbers).ToHashSet();
         Points = (int)Math.Pow(2, WinningNumbers.Count - 1);
     }

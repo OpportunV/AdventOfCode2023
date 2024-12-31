@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text.RegularExpressions;
+using Common.Extensions;
 using Common.Helpers;
 
 namespace AdventOfCode2023.Days;
@@ -20,7 +20,7 @@ public class Day8 : Day
         _instructions = split[0];
         foreach (var line in split[1].Split("\n"))
         {
-            var words = Regex.Matches(line, @"(\w+)").Select(match => match.Value).ToList();
+            var words = line.GetWords();
             _nodes[words[0]] = (words[1], words[2]);
         }
     }

@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text.RegularExpressions;
 using AdventOfCode2023.Models.Day6;
 using Common.Extensions;
 
@@ -36,7 +35,7 @@ public class Day6 : Day
     private List<Race> GetRaces()
     {
         var input = GetInput();
-        var races = input.Select(inp => Regex.Matches(inp, @"\d+").Select(match => int.Parse(match.Value))).ToList();
+        var races = input.Select(inp => inp.GetNumbers<int>()).ToList();
         return races[0].Zip(races[1]).Select(tuple => new Race(tuple.First, tuple.Second)).ToList();
     }
 
@@ -44,7 +43,7 @@ public class Day6 : Day
     {
         var input = GetInput();
         var race = input.Select(
-            inp => long.Parse(string.Join("", Regex.Matches(inp, @"\d+").Select(match => match.Value)))).ToList();
+            inp => long.Parse(string.Join("", inp.GetNumbers<int>()))).ToList();
         return new Race(race[0], race[1]);
     }
 }
