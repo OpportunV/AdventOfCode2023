@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using Common.Helpers;
@@ -8,6 +7,8 @@ namespace AdventOfCode2023.Days;
 
 public class Day10 : Day
 {
+    private const int Start = 'S';
+
     private readonly Dictionary<char, HashSet<GridPos2d>> _pipes = new()
     {
         { '|', [GridPos2d.Down, GridPos2d.Up] },
@@ -32,39 +33,36 @@ public class Day10 : Day
 
     public override string Part1()
     {
-        var start = _grid.Flatten().First(item => item.Value == 'S').Pos;
-        var toVisit = new Queue<(GridPos2d pos, int dist)>();
-        var seen = new Dictionary<GridPos2d, int>();
-        toVisit.Enqueue((start, 0));
-
-        while (toVisit.TryDequeue(out var cur))
-        {
-            var (pos, dist) = cur;
-            var pipe = _grid[pos];
-            seen.TryAdd(pos, int.MaxValue);
-            seen[pos] = Math.Min(seen[pos], dist);
-
-            foreach (var next in ConnectedPipes(pos, pipe))
-            {
-                if (!seen.ContainsKey(next))
-                {
-                    toVisit.Enqueue((next, dist + 1));
-                }
-            }
-        }
-
-        return seen.Values.Max().ToString();
+        var path = GetPipePath(out _);
+        return (path.Count / 2).ToString();
     }
 
     public override string Part2()
     {
-        var start = _grid.Flatten().First(item => item.Value == 'S');
+        var path = GetPipePath(out var corners);
+
+        // Fancy theorems go here.
+        // https://11011110.github.io/blog/2021/04/17/picks-shoelaces.html
+        var area = 0;
+        foreach (var (prev, cur) in corners.Zip(corners[1..].Append(corners[0])))
+        {
+            area += (cur.Row - prev.Row) * (cur.Col + prev.Col) / 2;
+        }
+
+        var interior = area - path.Count / 2 + 1;
+
+        return interior.ToString();
+    }
+
+    private HashSet<GridPos2d> GetPipePath(out List<GridPos2d> corners)
+    {
+        var start = _grid.Flatten().First(item => item.Value == Start);
         var seen = new HashSet<GridPos2d> { start.Pos };
 
         var connected = ConnectedPipes(start.Pos, start.Value).ToList();
         var direction = connected.First();
         var toVisit = new Queue<GridPos2d>();
-        var corners = new List<GridPos2d>();
+        corners = [];
         toVisit.Enqueue(direction);
 
         if (connected[0] != -connected[1])
@@ -94,17 +92,7 @@ public class Day10 : Day
             }
         }
 
-        // Fancy theorems go here.
-        // https://11011110.github.io/blog/2021/04/17/picks-shoelaces.html
-        var area = 0;
-        foreach (var (prev, cur) in corners.Zip(corners[1..].Append(corners[0])))
-        {
-            area += (cur.Row - prev.Row) * (cur.Col + prev.Col) / 2;
-        }
-
-        var interior = area - seen.Count / 2 + 1;
-
-        return interior.ToString();
+        return seen;
     }
 
     private IEnumerable<GridPos2d> ConnectedPipes(GridPos2d pos, char pipe)
