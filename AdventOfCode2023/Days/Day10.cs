@@ -41,15 +41,8 @@ public class Day10 : Day
     {
         var path = GetPipePath(out var corners);
 
-        // Fancy theorems go here.
-        // https://11011110.github.io/blog/2021/04/17/picks-shoelaces.html
-        var area = 0;
-        foreach (var (prev, cur) in corners.Zip(corners[1..].Append(corners[0])))
-        {
-            area += (cur.Row - prev.Row) * (cur.Col + prev.Col) / 2;
-        }
-
-        var interior = area - path.Count / 2 + 1;
+        var area = Calculator.PolygonArea(corners);
+        var interior = Calculator.PolygonInteriorPoints(area, path.Count);
 
         return interior.ToString();
     }
