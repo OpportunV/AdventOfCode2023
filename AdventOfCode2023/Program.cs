@@ -1,4 +1,4 @@
 ﻿using AdventOfCode2023;
 
 var solver = new Solver();
-solver.PrintDay(23);
+solver.PrintDay(24);
